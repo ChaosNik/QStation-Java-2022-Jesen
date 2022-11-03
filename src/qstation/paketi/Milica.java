@@ -2,6 +2,6 @@ package qstation.paketi;
 
 public class Milica {
 	public static int godine() {
-		return 25;
+		return 20;
 	}
 }
