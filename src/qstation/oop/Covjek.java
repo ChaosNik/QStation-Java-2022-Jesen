@@ -43,7 +43,5 @@ public class Covjek {
 	public boolean punoljetan(int trenutna_godina) {
 		return this.starost(trenutna_godina) >= 18;
 	}
-	public int visina(int trenutna_visina) {
-		return trenutna_visina - visina;
-	}
+	
 }
