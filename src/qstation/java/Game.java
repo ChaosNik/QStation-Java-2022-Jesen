@@ -32,12 +32,16 @@ public class Game {
 	
 	private void printLine(int length) {
 		//TODO
+		for(int i = 0; i < this.dimension + 2; ++i)
+			System.out.print("*");
+		System.out.println();
 	}
 	
 	private void printTurn() {
-		for(int i = 0; i < this.dimension + 2; ++i)//printLine(this.dimension);
-			System.out.print("*");
-		System.out.println();
+//		for(int i = 0; i < this.dimension + 2; ++i)//printLine(this.dimension);
+//			System.out.print("*");
+//		System.out.println();
+		printLine(this.dimension);
 		for(int i = 0; i < this.dimension; ++i) {
 			System.out.print("*");
 			for(int j = 0; j < this.dimension; ++j) {
@@ -52,19 +56,35 @@ public class Game {
 			}
 			System.out.println("*");
 		}
-		for(int i = 0; i < this.dimension + 2; ++i)//printLine(this.dimension);
-			System.out.print("*");
-		System.out.println();
+		printLine(this.dimension);
+//		for(int i = 0; i < this.dimension + 2; ++i)//printLine(this.dimension);
+//			System.out.print("*");
+//		System.out.println();
 	}
 	
 	private void movePoliceman(String option) {
 		Policeman policeman = (Policeman)persons[0];
 		if(option.compareTo("S") == 0 || option.compareTo("s") == 0) {
 			if(policeman.getY() == this.dimension - 1)
-				return;
+				return; 
 			policeman.moveDown();
 		}
 		//TODO A, W, D
+		if(option.compareTo("A") == 0 || option.compareTo("a") == 0) {
+			if(policeman.getX() == 0)
+				return;
+			policeman.moveLeft();
+		}
+		if(option.compareTo("W") == 0 || option.compareTo("w") == 0) {
+			if(policeman.getY() == 0)
+				return;
+			policeman.moveUp();
+		}
+		if(option.compareTo("D") == 0 || option.compareTo("d") == 0) {
+			if(policeman.getX() == this.dimension - 1)
+				return;
+			policeman.moveRight();
+		}
 	}
 	
 	public static void main(String[] args) {
