@@ -32,6 +32,13 @@ public class Game {
 	
 	private void printLine(int length) {
 		//TODO
+		printLine(this.dimension);
+		
+		
+		
+		
+		
+		
 	}
 	
 	private void printTurn() {
@@ -65,7 +72,23 @@ public class Game {
 			policeman.moveDown();
 		}
 		//TODO A, W, D
-	}
+		if(option.compareTo("W") == 0 || option.compareTo("w") == 0) {
+			if(policeman.getY() == this.dimension + 1)
+				return;
+			policeman.moveUp();
+		}
+		if(option.compareTo("A") == 0 || option.compareTo("a") == 0) {
+			if(policeman.getX() == this.dimension - 1)
+				return;
+			policeman.moveLeft();
+		}
+			if(option.compareTo("D") == 0 || option.compareTo("d") == 0) {
+				if(policeman.getX() == this.dimension + 1)
+					return;
+				policeman.moveRight();
+		}
+		}
+		
 	
 	public static void main(String[] args) {
 		// testPerson();
