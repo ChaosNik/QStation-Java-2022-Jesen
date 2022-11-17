@@ -29,34 +29,36 @@ public class Game {
 		}
 		return turn;
 	}
-	
+
 	private void printLine(int length) {
-		//TODO
+		this.dimension = dimension;
+			System.out.print("*");
+		System.out.println();
 	}
 	
 	private void printTurn() {
-		for(int i = 0; i < this.dimension + 2; ++i)//printLine(this.dimension);
-			System.out.print("*");
+		this.dimension = dimension;
+		System.out.print("*");
 		System.out.println();
-		for(int i = 0; i < this.dimension; ++i) {
+		for(int i = 0; i < this.dimension; ++i)
 			System.out.print("*");
 			for(int j = 0; j < this.dimension; ++j) {
-//				for(int k = 0; k < persons.length; ++k) {
-//					Person trenutna_osoba = persons[k];
-//					
-//				}
-				if(persons[0].getY() == i && persons[0].getX() == j)
-					System.out.print(persons[0]);
-				else
-					System.out.print(" ");
-			}
-			System.out.println("*");
+int i = 0;
+			//			  	  for(int k = 0; k < person.length; ++k) {
+//    	 		      Person trenutna_osoba = person[k];
+//			  }
+			if(persons[0].getY() == i && persons[0].getX() == j)
+				System.out.print(persons[0]);
+			else
+				System.out.print(" ");
 		}
-		for(int i = 0; i < this.dimension + 2; ++i)//printLine(this.dimension);
-			System.out.print("*");
+		System.out.println("*");
+	
+		this.dimension = dimension;
+		System.out.print("*");
 		System.out.println();
 	}
-	
+
 	private void movePoliceman(String option) {
 		Policeman policeman = (Policeman)persons[0];
 		if(option.compareTo("S") == 0 || option.compareTo("s") == 0) {
@@ -64,7 +66,21 @@ public class Game {
 				return;
 			policeman.moveDown();
 		}
-		//TODO A, W, D
+		if(option.compareTo("A") == 0 || option.compareTo("a") == 0) {
+			if(policeman.getY() == this.dimension + 1)
+				return;
+			policeman.moveLeft();
+		}
+		if(option.compareTo("W") == 0 || option.compareTo("w") == 0) {
+			if(policeman.getX() == this.dimension + 1)
+				return;
+			policeman.moveUp();
+		}
+		if(option.compareTo("D") == 0 || option.compareTo("d") == 0) {
+			if(policeman.getX() == this.dimension - 1)
+				return;
+			policeman.moveRight();
+		}
 	}
 	
 	public static void main(String[] args) {
