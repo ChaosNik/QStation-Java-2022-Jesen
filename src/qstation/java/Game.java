@@ -1,4 +1,5 @@
 package qstation.java;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -11,67 +12,125 @@ public class Game {
 		this.number_of_thieves = number_of_thieves;
 		persons = new Person[number_of_thieves + 1];
 		persons[0] = new Policeman(0, 0);
-		System.out.println(persons);
+		for(int i = 0; i < this.number_of_thieves; ++i) {
+			Random rand = new Random();
+			int x = rand.nextInt(this.dimension);
+			int y = rand.nextInt(this.dimension);
+			if(isFieldFree(x, y))
+				persons[i + 1] = new Thief(x, y, (char)('A' + i));
+			else
+				--i;
+		}
+	}
+	
+	private boolean isFieldFree(int x, int y) {
+//		for(int i = 0; i < persons.length; ++i) {
+//			Person person = persons[i];
+//		}
+		for(Person person : persons)
+			if(person != null && person.getX() == x && person.getY() == y)
+				return false;
+		return true;
 	}
 	
 	public int play() {
 		Scanner in = new Scanner(System.in);
 		int turn = 0;
-		while(turn < 10) {
+		this.printTurn();
+		while(turn < 20) {//number_of_thieves > 0
 			turn++;
 			
 			System.out.println("Where do you want to move? (WASD)");
 			String option = in.next();
+			//moveThieves() -- moveThief(randOption)
 			this.movePoliceman(option);
 			
 			System.out.println(turn);
 			this.printTurn();
 		}
+		System.out.println("Game finished in " + turn + " turns!!!");
 		return turn;
 	}
 	
-	private void printLine(int length) {
-		//TODO
+	private void moveThieves() {
+		for(Person person : persons) {
+			if(person instanceof Thief){
+				Thief thief = (Thief)person;
+				Random rand = new Random();
+				int option = rand.nextInt(4);
+				moveThief(thief, 4);
+			}
+		}
+	}
+	
+	private void moveThief(Thief thief, int option) {
+		// TASK: CHECK IF THIEF CAN MOVE IN CERTAIN DIRECTION AND IF IT CAN, MOVE HIM
+	}
+	
+	private static void printLine(int length) {
+		for(int i = 0; i < length; ++i)
+			System.out.print("*");
+		System.out.println();
 	}
 	
 	private void printTurn() {
-		for(int i = 0; i < this.dimension + 2; ++i)//printLine(this.dimension);
-			System.out.print("*");
-		System.out.println();
+		printLine(this.dimension + 2);
 		for(int i = 0; i < this.dimension; ++i) {
 			System.out.print("*");
 			for(int j = 0; j < this.dimension; ++j) {
-//				for(int k = 0; k < persons.length; ++k) {
-//					Person trenutna_osoba = persons[k];
-//					
-//				}
-				if(persons[0].getY() == i && persons[0].getX() == j)
-					System.out.print(persons[0]);
+				Person person = null;
+				for(int k = 0; k < persons.length; ++k) {
+					if(persons[k].getY() == i && persons[k].getX() == j) {
+						person = persons[k];
+						k = persons.length;
+					}
+				}
+				if(person != null)
+					System.out.print(person);
 				else
 					System.out.print(" ");
 			}
 			System.out.println("*");
 		}
-		for(int i = 0; i < this.dimension + 2; ++i)//printLine(this.dimension);
-			System.out.print("*");
-		System.out.println();
+		printLine(this.dimension + 2);
 	}
 	
 	private void movePoliceman(String option) {
 		Policeman policeman = (Policeman)persons[0];
-		if(option.compareTo("S") == 0 || option.compareTo("s") == 0) {
+		if(option.toLowerCase().compareTo("s") == 0) {
 			if(policeman.getY() == this.dimension - 1)
 				return;
 			policeman.moveDown();
 		}
-		//TODO A, W, D
+		else if(option.toLowerCase().compareTo("w") == 0) {
+			if(policeman.getY() == 0)
+				return;
+			policeman.moveUp();
+		}
+		else if(option.toLowerCase().compareTo("d") == 0) {
+			if(policeman.getX() == this.dimension - 1)
+				return;
+			policeman.moveRight();
+		}
+		else if(option.toLowerCase().compareTo("a") == 0) {
+			if(policeman.getX() == 0)
+				return;
+			policeman.moveLeft();
+		}
+		
 	}
 	
 	public static void main(String[] args) {
 		// testPerson();
 		// testPoliceman();
 		// testThief();
-		Game game = new Game(7, 10);
+//		Scanner in = new Scanner(System.in);
+//		System.out.println("Enter size of the field: ");
+//		int dimension = in.nextInt();
+//		System.out.println("Enter the number of thieves: ");
+//		int number_of_thieves = in.nextInt();
+//		Game game = new Game(dimension, number_of_thieves);
+		Game game = new Game(7, 7);
 		game.play();
 
 	}
