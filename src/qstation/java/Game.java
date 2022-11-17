@@ -32,7 +32,7 @@ public class Game {
 	
 	private void printLine(int length) {
 		//TODO
-		for(int i = 0; i < this.dimension + 2; ++i)
+		for(int i = 0; i < length; ++i)
 			System.out.print("*");
 		System.out.println();
 	}
@@ -41,7 +41,7 @@ public class Game {
 //		for(int i = 0; i < this.dimension + 2; ++i)//printLine(this.dimension);
 //			System.out.print("*");
 //		System.out.println();
-		printLine(this.dimension);
+		printLine(this.dimension+2);
 		for(int i = 0; i < this.dimension; ++i) {
 			System.out.print("*");
 			for(int j = 0; j < this.dimension; ++j) {
@@ -56,7 +56,7 @@ public class Game {
 			}
 			System.out.println("*");
 		}
-		printLine(this.dimension);
+		printLine(this.dimension+2);
 //		for(int i = 0; i < this.dimension + 2; ++i)//printLine(this.dimension);
 //			System.out.print("*");
 //		System.out.println();
