@@ -63,10 +63,36 @@ public class Game {
 		}
 	}
 	
-	private void moveThief(Thief thief, int option) {
+	private void moveThief(Thief thief, int option) 
 		// TASK: CHECK IF THIEF CAN MOVE IN CERTAIN DIRECTION AND IF IT CAN, MOVE HIM
+		{
+			if(thief.getX() == this.dimension + 1) {
+			
+			if(thief.getY() == this.dimension - 1)
+				return;
+			thief.moveDown();
+		}
+		else  if(thief.getX() == this.dimension + 2) {
+			
+			if(thief.getY() ==  0)
+				return;
+			thief.moveUp();
+			
 	}
-	
+		else if(thief.getY() == 0) {
+		
+		if(thief.getX() == this.dimension + 3)
+			return;
+		thief.moveLeft();
+	}
+			
+		else    if(thief.getY() == 0) {
+		
+		if(thief.getX() == this.dimension + 4)
+			return;
+		thief.moveRight();
+		}
+	}	
 	private static void printLine(int length) {
 		for(int i = 0; i < length; ++i)
 			System.out.print("*");
