@@ -59,7 +59,7 @@ public class Game {
 				Thief thief = (Thief)person;
 				Random rand = new Random();
 				int option = rand.nextInt(4);
-				moveThief(thief, 4);
+				moveThief(thief, option);
 			}
 		}
 	}
