@@ -64,9 +64,45 @@ public class Game {
 	}
 	
 	private void moveThief(Thief thief, int option) {
-		// TASK: CHECK IF THIEF CAN MOVE IN CERTAIN DIRECTION AND IF IT CAN, MOVE HIM
+		int option = rand.nextInt(4);
+		int x = rand.nextInt(this.dimension);
+		int y = rand.nextInt(this.dimension);
+		Thief thief = (Thief)person;
+
+			if(thief != null && thief.getX() == x && thief.getY() == y)
+				return;
+			else if(randOption.toLowerCase().compareTo("s") == 0) { 		
+			}
+			else if(Thief.getY() == this.dimension -1) {	
+				return;
+			Thief.moveDown();		
+				}
+			if(thief != null && thief.getX() == x && thief.getY() == y)
+				return;
+			else if(randOption.toLowerCase().compareTo("w") == 0) {
+				}
+			else if(Thief.getY() == 0) {
+				return;
+			Thief.moveUp();
 	}
-	
+			if(thief != null && thief.getX() == x && thief.getY() == 0)
+				return;
+			else if(randOption.toLowerCase().compareTo("d") == 0) {
+				}
+			else if(Thief.getX() == this.dimension -1) {
+				return;
+			Thief.moveRight();
+	}
+			if(thief != null && thief.getX() == x && thief.getY() == y)
+				return;
+			else if(randOption.toLowerCase().compareTo("a") == 0) {
+				}
+			else if(Thief.getX() == 0) {
+				return;
+			Thief.moveLeft();
+			}
+	}
+			
 	private static void printLine(int length) {
 		for(int i = 0; i < length; ++i)
 			System.out.print("*");
