@@ -43,6 +43,7 @@ public class Game {
 			System.out.println("Where do you want to move? (WASD)");
 			String option = in.next();
 			//moveThieves() -- moveThief(randOption)
+			this.moveThieves();
 			this.movePoliceman(option);
 			
 			System.out.println(turn);
@@ -65,6 +66,27 @@ public class Game {
 	
 	private void moveThief(Thief thief, int option) {
 		// TASK: CHECK IF THIEF CAN MOVE IN CERTAIN DIRECTION AND IF IT CAN, MOVE HIM
+		if (option == 1) {
+			if (thief.getY() == this.dimension - 1 && isFieldFree(thief.getX(), thief.getY()+1))
+				return;
+			thief.moveDown();
+			
+		}
+		else if(option == 2) {
+			if (thief.getY() == 0 && isFieldFree(thief.getX(), thief.getY()-1))
+				return;
+			thief.moveUp();
+		}
+		else if(option == 3) {
+			if(thief.getX() == this.dimension-1 && isFieldFree(thief.getX()+1, thief.getY()))
+				return;
+			thief.moveRight();
+		}
+		else if(option == 4) {
+			if(thief.getX() == 0 && isFieldFree(thief.getX()-1, thief.getY()))
+				return;
+			thief.moveLeft();
+		}
 	}
 	
 	private static void printLine(int length) {
